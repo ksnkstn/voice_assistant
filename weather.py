@@ -1,3 +1,7 @@
+from pyowm import OWM
+import re
+import pymorphy2
+
 def weather(city_name):
     '''
     Получение погоды
