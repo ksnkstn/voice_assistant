@@ -254,9 +254,8 @@ def check_gmail(*args: tuple):
                 redcode2, data = imap.fetch(num, '(RFC822)')  # извлекаем письмо в байтах
                 msg = email.message_from_bytes(data[0][1])  # парсинг байтовых данных письма
                 if redcode2 == 'OK':
-                    play_voice_assistant_speech(
-                        "\nТема: " + decode(msg["Subject"]) + '\nОтправитель: ' + ((msg["From"].split())[1]).strip(
-                            "<>"))
+                    play_voice_assistant_speech("Тема: " + decode(msg["Subject"]) + '\nОтправитель: ' + ((msg["From"].split())[1]).strip("<>")+"\n")
+                    
         imap.close()
 
     except Exception as e:
@@ -402,4 +401,4 @@ def finish():
 
 
 root.protocol("WM_DELETE_WINDOW", finish)  # протокол: при закрытии окна запуск фун. finish
-root.mainloop()  # Для отображения окна и взаимодействия с пользователем
+root.mainloop()  # Для отображения окна и взаимодействия с пользователем 
