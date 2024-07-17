@@ -128,7 +128,8 @@ def search_for_definition_on_wikipedia(*args: tuple):
         play_voice_assistant_speech(f"Найдено в Википедии: \n{summary}")
     except wikipedia.exceptions.PageError:  # Обработка ошибки, если страница не найдена
         play_voice_assistant_speech("Не найдено в Wikipedia. Но найдено в гугл. Открываю")
-        url = "https://google.com/search?q=" + search_term
+        encoded_search_term = urllib.parse.quote(search_term)
+        url = f"https://google.com/search?q={encoded_search_term}"
         webbrowser.open(url)
     except Exception as e:
         play_voice_assistant_speech(f"Произошла ошибка: {e}")
